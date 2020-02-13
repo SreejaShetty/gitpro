@@ -58,8 +58,9 @@ fun Application.module(@Suppress("UNUSED_PARAMETER") testing: Boolean = false) {
         route("/github") {
             gitHub()
         }
-        post("/"){
-            call.respond(mapOf("ok" to true))
-        }
+//        post("/"){
+//            call.recieve<>
+//            call.respond(mapOf("ok" to true))
+//        }
     }
 }
