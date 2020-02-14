@@ -13,14 +13,15 @@ import io.ktor.features.DefaultHeaders
 import io.ktor.features.ForwardedHeaderSupport
 import io.ktor.features.XForwardedHeaderSupport
 import io.ktor.http.ContentType
-import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.routing.route
 import io.ktor.routing.routing
 import io.ktor.server.engine.ShutDownUrl
+import jdk.nashorn.internal.ir.RuntimeNode
 import org.slf4j.event.Level
+import java.util.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -52,15 +53,35 @@ fun Application.module(@Suppress("UNUSED_PARAMETER") testing: Boolean = false) {
     }
 
     routing {
+
         get("/") {
             call.respondText("MAKE IT EASY", contentType = ContentType.Text.Plain)
         }
         route("/github") {
             gitHub()
         }
-//        post("/"){
-//            call.recieve<>
-//            call.respond(mapOf("ok" to true))
-//        }
+        post("/") {
+
+            val request:Request = Builder()
+                .url("https://github.com/SreejaShetty/gitpro.git")
+                .build()
+   //      snippets += Snippet(post.people.name,post.people.age)
+  //       call.respond(mapOf("OK" to true))
+        }
     }
 }
+
+data class Snippet(val name: String,val age:Int)
+
+
+val snippets = Collections.synchronizedList(mutableListOf(
+    Snippet("rama",24),
+    Snippet("shama",31)
+))
+
+data class PostSnippet(val people: Text) {
+    data class Text(val name: String,val age:Int)
+}
+
+
+
