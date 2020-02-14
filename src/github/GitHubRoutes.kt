@@ -10,4 +10,7 @@ fun Route.gitHub() {
     post("/webhook") {
         call.respondText("OK", contentType = ContentType.Text.Plain)
     }
+    post("/") {
+        call.respondText("OK", contentType = ContentType.Text.Plain)
+    }
 }

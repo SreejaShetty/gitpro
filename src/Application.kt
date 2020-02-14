@@ -13,14 +13,18 @@ import io.ktor.features.DefaultHeaders
 import io.ktor.features.ForwardedHeaderSupport
 import io.ktor.features.XForwardedHeaderSupport
 import io.ktor.http.ContentType
+import io.ktor.http.cio.Request
+import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.routing.route
 import io.ktor.routing.routing
 import io.ktor.server.engine.ShutDownUrl
-import jdk.nashorn.internal.ir.RuntimeNode
+import javafx.util.Builder
+
 import org.slf4j.event.Level
+import java.lang.module.ModuleDescriptor
 import java.util.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -61,12 +65,11 @@ fun Application.module(@Suppress("UNUSED_PARAMETER") testing: Boolean = false) {
             gitHub()
         }
         post("/") {
-
-            val request:Request = Builder()
-                .url("https://github.com/SreejaShetty/gitpro.git")
-                .build()
+   //         val Request= call.recieve<("https://github.com/SreejaShetty/gitpro.git")>
    //      snippets += Snippet(post.people.name,post.people.age)
-  //       call.respond(mapOf("OK" to true))
+   //         call.respondText("MAKE IT EASY", contentType = ContentType.Text.Plain)
+            call.respond("Changes recieved")
+   //         print(this)
         }
     }
 }
